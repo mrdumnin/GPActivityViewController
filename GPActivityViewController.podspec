@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.ios.weak_frameworks = 'Social'
 
   #s.dependency 'AFNetworking', '~> 2.5'
-  #s.dependency 'Facebook-iOS-SDK', '~> 3.16.0'
-  #s.dependency 'DEFacebookComposeViewController', '~> 1.0.0'
-  #s.dependency 'REComposeViewController', '~> 2.0.3'
+  s.dependency 'Facebook-iOS-SDK', '~> 3.16.0'
+  s.dependency 'DEFacebookComposeViewController', '~> 1.0.0'
+  s.dependency 'REComposeViewController', '~> 2.0.3'
 end
