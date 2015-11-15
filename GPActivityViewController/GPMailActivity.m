@@ -25,7 +25,7 @@
 
 NSString *const GPActivityMail = @"GPActivityMail";
  
-@interface GPMailActivity () <MFMailComposeViewControllerDelegate>
+@interface GPMailActivity () <MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 @end
 
 @implementation GPMailActivity
@@ -49,21 +49,13 @@ NSString *const GPActivityMail = @"GPActivityMail";
 - (void)performActivity {
     
     if (![MFMailComposeViewController canSendMail]) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No mail account is set up"
-                                                                       message:@"Please open Settings and configure your mail account before doing a transaction."
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* settingsAction = [UIAlertAction actionWithTitle:@"Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-        }];
-        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * action) {
-                                                                 [self dismissViewControllerAnimated:YES completion:NULL];
-                                                             }];
+        UIAlertView *alert = [[UIAlertView alloc] init];
+        alert.delegate = self
+        alert.title = @"No mail account is set up";
+        alert.message = @"Please open Settings and configure your mail account before doing a transaction.";
+        [alert addButtonWithTitle:@"Candel"];
+        [alert addButtonWithTitle:@"Settings"];
         
-        [alert addAction:settingsAction];
-        [alert addAction:cancelAction];
-        
-        [self presentViewController:alert animated:YES completion:NULL];
         return;
     }
     
@@ -110,5 +102,12 @@ NSString *const GPActivityMail = @"GPActivityMail";
     [self activityDidFinish:(result == MFMailComposeResultSent)];
 }
 
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }
+}
 
 @end
