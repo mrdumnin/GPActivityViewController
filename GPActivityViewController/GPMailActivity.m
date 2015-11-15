@@ -53,7 +53,7 @@ NSString *const GPActivityMail = @"GPActivityMail";
         alert.delegate = self;
         alert.title = @"No mail account is set up";
         alert.message = @"Please open Settings and configure your mail account before doing a transaction.";
-        [alert addButtonWithTitle:@"Candel"];
+        [alert addButtonWithTitle:@"Cancel"];
         [alert addButtonWithTitle:@"Settings"];
         [alert show];
         return;
@@ -106,7 +106,8 @@ NSString *const GPActivityMail = @"GPActivityMail";
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=ACCOUNT_SETTINGS"]];
     }
 }
 
