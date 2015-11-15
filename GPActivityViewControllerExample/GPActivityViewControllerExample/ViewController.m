@@ -33,6 +33,8 @@
             }
         }
     }];
+    
+    UIApplicationOpenSettingsURLString
 
     UIImage *image = [UIImage imageNamed:@"Activities"];
     controller.userInfo = @{@"text":@"Message to pass to activities",

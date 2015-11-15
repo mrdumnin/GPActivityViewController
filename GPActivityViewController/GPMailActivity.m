@@ -47,6 +47,26 @@ NSString *const GPActivityMail = @"GPActivityMail";
 #pragma mark - 
 
 - (void)performActivity {
+    
+    if (![MFMailComposeViewController canSendMail]) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No mail account is set up"
+                                                                       message:@"Please open Settings and configure your mail account before doing a transaction."
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* settingsAction = [UIAlertAction actionWithTitle:@"Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        }];
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action) {
+                                                                 [self dismissViewControllerAnimated:YES completion:NULL];
+                                                             }];
+        
+        [alert addAction:settingsAction];
+        [alert addAction:cancelAction];
+        
+        [self presentViewController:alert animated:YES completion:NULL];
+        return;
+    }
+    
     NSString *subject = [self.userInfo objectForKey:@"subject"];
     NSString *text = [self.userInfo objectForKey:@"text"];
     UIImage *image = [self.userInfo objectForKey:@"image"];
