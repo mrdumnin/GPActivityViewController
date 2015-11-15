@@ -50,7 +50,7 @@ NSString *const GPActivityMail = @"GPActivityMail";
     
     if (![MFMailComposeViewController canSendMail]) {
         UIAlertView *alert = [[UIAlertView alloc] init];
-        alert.delegate = self
+        alert.delegate = self;
         alert.title = @"No mail account is set up";
         alert.message = @"Please open Settings and configure your mail account before doing a transaction.";
         [alert addButtonWithTitle:@"Candel"];
