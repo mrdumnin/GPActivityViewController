@@ -55,7 +55,7 @@ NSString *const GPActivityMail = @"GPActivityMail";
         alert.message = @"Please open Settings and configure your mail account before doing a transaction.";
         [alert addButtonWithTitle:@"Candel"];
         [alert addButtonWithTitle:@"Settings"];
-        
+        [alert show];
         return;
     }
     
