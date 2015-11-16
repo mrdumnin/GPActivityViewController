@@ -31,7 +31,7 @@
 "ACTIVITY_CUSTOM"="Custom";
 
 /* Buttons */
-"BUTTON_CANCEL"="Cancel";
+"BUTTON_CANCEL"="ยกเลิก";
 "BUTTON_DISMISS"="Dismiss";
 "BUTTON_LOGIN"="Log In";
 "BUTTON_POST"="Post";
